@@ -21,10 +21,12 @@ if ($age >= 18) {
     echo "Mineur";
 }
 ```
+
 - La condition est entre **parenthèses**, le bloc entre **accolades**.
 - `elseif` en un seul mot.
 
 ### Les clauses de garde (plutôt que l'imbrication)
+
 Applique [Fail Fast](../Principes-Genie-Logiciel/07-fail-fast.md) : traite les cas invalides
 **d'abord** et sors tôt. Le code « normal » reste **non imbriqué** et lisible.
 
@@ -61,10 +63,12 @@ $libelle = match ($statut) {
 };
 echo $libelle;   // Payée
 ```
+
 > 💡 `match` est plus sûr que `switch` (pas d'oubli de `break`, comparaison stricte) et plus
 > [explicite](../Principes-Genie-Logiciel/08-explicite-vs-implicite.md). Préfère-le.
 
 Comparaison avec l'ancien `switch` (que tu croiseras encore) :
+
 ```php
 <?php
 switch ($statut) {
@@ -81,6 +85,7 @@ switch ($statut) {
 ## 🔁 Les boucles
 
 ### `for` — nombre de tours connu
+
 ```php
 <?php
 for ($i = 1; $i <= 5; $i++) {
@@ -89,6 +94,7 @@ for ($i = 1; $i <= 5; $i++) {
 ```
 
 ### `while` — tant qu'une condition est vraie
+
 ```php
 <?php
 $compteur = 0;
@@ -99,6 +105,7 @@ while ($compteur < 3) {
 ```
 
 ### `foreach` — LA boucle du quotidien (parcourir un tableau)
+
 ```php
 <?php
 $fruits = ["pomme", "banane", "cerise"];
@@ -113,6 +120,7 @@ foreach ($notes as $matiere => $note) {
     echo "$matiere : $note" . PHP_EOL;
 }
 ```
+
 > 💡 En backend, tu passes ton temps à parcourir des **collections** (résultats de base de
 > données, listes d'objets…). `foreach` sera ta boucle la plus utilisée.
 
