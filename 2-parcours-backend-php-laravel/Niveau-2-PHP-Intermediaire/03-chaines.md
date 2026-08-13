@@ -34,6 +34,7 @@ var_dump(str_starts_with($email, "m")); // true — commence par ?
 var_dump(str_ends_with($email, ".fr")); // true — finit par ?
 echo strpos($email, "@");               // 5 — position (ou false si absent)
 ```
+
 > 💡 `str_contains`, `str_starts_with`, `str_ends_with` (PHP 8) rendent le code **explicite** et
 > lisible — préfère-les à des `strpos(...) !== false` obscurs.
 
@@ -68,6 +69,7 @@ echo strlen("café");        // 5  ❌ (octets)
 echo mb_strlen("café");     // 4  ✅ (caractères)
 echo mb_strtolower("ÉCOLE"); // "école" (gère les accents)
 ```
+
 > 🧠 **Règle backend** : dès qu'il y a du texte utilisateur (donc des accents possibles),
 > pense **`mb_*`**. C'est un réflexe de pro.
 
@@ -88,6 +90,7 @@ function genererSlug(string $titre): string
 
 echo genererSlug("Mon Premier Article !");  // mon-premier-article
 ```
+
 > 🔎 `preg_replace` utilise une **expression régulière** (regex). On les découvre ici en douceur ;
 > retiens juste que `[^a-z0-9]+` signifie « un ou plusieurs caractères qui ne sont **pas** une
 > lettre minuscule ou un chiffre ».
@@ -121,4 +124,4 @@ echo 'Bonjour ' . $nom . ' !';    // concaténation avec le point
 - **Texte avec accents → fonctions `mb_*`** (réflexe backend).
 - Valider un email avec **`filter_var(..., FILTER_VALIDATE_EMAIL)`**.
 
-👉 Leçon suivante : [La gestion d'erreurs : les exceptions](./04-exceptions.md)
+👉 Leçon suivante : [La gestion d&#39;erreurs : les exceptions](./04-exceptions.md)

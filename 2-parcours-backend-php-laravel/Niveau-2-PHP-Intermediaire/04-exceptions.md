@@ -55,6 +55,7 @@ try {
     echo "Fin du traitement.";           // TOUJOURS exécuté (erreur ou pas)
 }
 ```
+
 - `try` : le code « à risque ».
 - `catch (TypeException $e)` : que faire si **ce type** d'exception survient. `$e->getMessage()`
   donne le message.
@@ -67,12 +68,12 @@ try {
 Toutes héritent de la classe `Exception` (elle-même sous `Throwable`). Il en existe des
 **spécialisées**, à choisir selon le sens :
 
-| Exception | Quand l'utiliser |
-|---|---|
-| `InvalidArgumentException` | Un argument invalide a été passé |
-| `RuntimeException` | Une erreur survenue **à l'exécution** (fichier illisible…) |
-| `LogicException` | Une erreur de logique de programmation (bug) |
-| `DomainException` | Une valeur hors du domaine métier autorisé |
+| Exception                    | Quand l'utiliser                                                   |
+| ---------------------------- | ------------------------------------------------------------------ |
+| `InvalidArgumentException` | Un argument invalide a été passé                                |
+| `RuntimeException`         | Une erreur survenue**à l'exécution** (fichier illisible…) |
+| `LogicException`           | Une erreur de logique de programmation (bug)                       |
+| `DomainException`          | Une valeur hors du domaine métier autorisé                       |
 
 > 💡 Choisir le **bon type** rend le code **[explicite](../Principes-Genie-Logiciel/08-explicite-vs-implicite.md)** :
 > le nom de l'exception documente déjà la nature du problème.
@@ -101,6 +102,7 @@ try {
     echo "Refusé : " . $e->getMessage();
 }
 ```
+
 On peut **cibler** ce cas précis dans un `catch`, sans attraper toutes les autres erreurs.
 
 ---
@@ -119,6 +121,7 @@ try {
     // filet de sécurité : ATTRAPE TOUT (à utiliser en dernier recours)
 }
 ```
+
 > ⚠️ Attraper `Throwable` « pour être tranquille » et **ne rien faire** est un anti-pattern
 > (ça masque les bugs). Attrape ce que tu sais **traiter**, laisse remonter le reste.
 

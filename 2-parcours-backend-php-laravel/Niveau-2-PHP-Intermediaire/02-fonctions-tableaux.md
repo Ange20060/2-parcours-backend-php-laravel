@@ -18,6 +18,7 @@ foreach ([1, 2, 3, 4] as $n) {
 // Déclaratif : on dit "transforme chaque élément en son carré"
 $carres = array_map(fn(int $n): int => $n * $n, [1, 2, 3, 4]);
 ```
+
 Les deux donnent `[1, 4, 9, 16]`. Le second est plus concis et **exprime l'intention**.
 
 > 💡 Rappel : `fn($x) => ...` est une **fonction fléchée** (arrow function). Utile pour ces
@@ -44,8 +45,10 @@ $nombres = [4, 7, 2, 9, 1, 8];
 $pairs = array_filter($nombres, fn(int $n): bool => $n % 2 === 0);
 // [4, 2, 8]  — MAIS les clés d'origine sont conservées (0 => 4, 2 => 2, 5 => 8)
 ```
+
 > ⚠️ **Piège classique** : `array_filter` **conserve les clés**. Si tu as besoin d'une liste
 > ré-indexée proprement (0, 1, 2…), enveloppe avec **`array_values(...)`** :
+>
 > ```php
 > $pairs = array_values(array_filter($nombres, fn($n) => $n % 2 === 0));
 > ```
@@ -66,6 +69,7 @@ $total = array_reduce(
 );
 // 400.0
 ```
+
 - `$acc` = l'accumulateur (le résultat en cours de construction).
 - Le 3ᵉ argument = la **valeur initiale** de l'accumulateur.
 
@@ -88,6 +92,7 @@ $montants = array_map(fn(array $c): float => $c["montant"], $payees);
 $ca       = array_reduce($montants, fn(float $acc, float $m): float => $acc + $m, 0.0);
 // 320.0
 ```
+
 Chaque étape a **un nom clair** et **une responsabilité** : filtrer → extraire → additionner.
 C'est lisible « comme une phrase » — l'inverse d'une grosse boucle fourre-tout.
 
@@ -113,6 +118,7 @@ usort($users, fn(array $a, array $b): int => $a["age"] <=> $b["age"]);
 // par nom (alphabétique)
 usort($users, fn(array $a, array $b): int => strcmp($a["nom"], $b["nom"]));
 ```
+
 > 💡 `$a <=> $b` vaut `-1`, `0` ou `1`. Pour l'ordre **décroissant**, inverse : `$b["age"] <=> $a["age"]`.
 
 ---

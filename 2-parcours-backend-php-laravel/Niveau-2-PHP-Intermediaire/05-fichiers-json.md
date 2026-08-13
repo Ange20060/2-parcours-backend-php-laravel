@@ -27,6 +27,7 @@ foreach ($lignes as $ligne) {
     echo $ligne . PHP_EOL;
 }
 ```
+
 > ⚠️ **Fail Fast** : `file_get_contents` sur un fichier absent déclenche un **warning** et
 > renvoie `false`. Vérifie l'existence (`file_exists(...)`) ou gère l'erreur.
 
@@ -44,6 +45,7 @@ structurées. C'est le langage d'échange des **API** : ton API Laravel renverra
   "roles": ["admin", "user"]
 }
 ```
+
 Il ressemble beaucoup à un **tableau associatif** PHP — et c'est exactement comme ça qu'on le manipule.
 
 ---
@@ -62,6 +64,7 @@ $texte = '{"nom":"Marie","age":25}';
 $tableau = json_decode($texte, true);   // true = tableau associatif (sinon: objet)
 echo $tableau["nom"];                    // Marie
 ```
+
 - `JSON_PRETTY_PRINT` : indente joliment (lisible).
 - `JSON_UNESCAPED_UNICODE` : garde les accents lisibles (`é` au lieu de `\u00e9`).
 - `json_decode($texte, true)` : le `true` te donne un **tableau associatif** (le plus pratique).
@@ -84,6 +87,7 @@ if (!is_array($donnees)) {
     throw new RuntimeException("JSON invalide ou corrompu.");
 }
 ```
+
 > 💡 Encore mieux (PHP 7.3+) : `json_decode($texte, true, flags: JSON_THROW_ON_ERROR)` lève
 > directement une **`JsonException`** en cas de problème — du Fail Fast intégré.
 
@@ -118,6 +122,7 @@ $taches = charger("taches.json");
 $taches[] = ["titre" => "Apprendre PHP", "fait" => false];
 sauvegarder($taches, "taches.json");
 ```
+
 > 🎯 **Bonnes pratiques** : un **chemin relatif** (jamais `C:/Users/...` codé en dur — ça casse
 > sur toute autre machine !), et la **même** constante de nom de fichier pour lire **et** écrire.
 

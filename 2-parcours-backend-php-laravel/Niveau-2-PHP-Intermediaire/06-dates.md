@@ -25,11 +25,12 @@ echo $noel->format("Y-m-d");        // 2026-12-25
 echo $noel->format("d/m/Y");        // 25/12/2026
 echo $noel->format("H:i");          // 00:00
 ```
-| Symbole | Sens | Exemple |
-|:--:|---|---|
-| `Y` | année (4 chiffres) | 2026 |
+
+|    Symbole    | Sens                     | Exemple |
+| :-----------: | ------------------------ | ------- |
+|     `Y`     | année (4 chiffres)      | 2026    |
 | `m` / `d` | mois / jour (2 chiffres) | 08 / 10 |
-| `H` / `i` | heures / minutes | 14 / 30 |
+| `H` / `i` | heures / minutes         | 14 / 30 |
 
 > 🔎 La liste complète des symboles est dans la doc PHP (`date` format) — à garder sous la main.
 
@@ -55,6 +56,7 @@ $fin = $debut->modify("+1 month");
 echo $debut->format("Y-m-d");   // 2026-01-01 (intact) ✅
 echo $fin->format("Y-m-d");     // 2026-02-01
 ```
+
 > 🧠 **Règle** : utilise **toujours `DateTimeImmutable`**. C'est plus **[explicite](../Principes-Genie-Logiciel/08-explicite-vs-implicite.md)**
 > et ça évite les effets de bord. (Laravel utilise Carbon, une version enrichie — même idée.)
 
@@ -72,7 +74,9 @@ $intervalle = $naissance->diff($aujourdhui);   // un objet DateInterval
 echo $intervalle->y;       // nombre d'années → l'âge
 echo $intervalle->days;    // nombre TOTAL de jours entre les deux
 ```
+
 Exemple concret — l'âge et « dans combien de jours » :
+
 ```php
 <?php
 function calculerAge(string $dateNaissance): int
@@ -119,6 +123,7 @@ if ($d < new DateTimeImmutable("today")) {
     echo "Date passée";
 }
 ```
+
 > 💡 C'est un bug **très** fréquent chez les débutants : stocker une date en texte d'un côté et
 > en objet de l'autre, puis les comparer → ça ne matche jamais. **Uniformise le type.**
 
@@ -140,4 +145,4 @@ if ($d < new DateTimeImmutable("today")) {
 - Ajouter/retirer : `->modify("+2 weeks")`, `->add(new DateInterval("P30D"))`.
 - **Compare des dates avec des dates** (même type), jamais avec des chaînes.
 
-👉 Leçon suivante : [Composer, autoloading & PSR](./07-composer-psr.md)
+👉 Leçon suivante : [Composer, autoloading &amp; PSR](./07-composer-psr.md)

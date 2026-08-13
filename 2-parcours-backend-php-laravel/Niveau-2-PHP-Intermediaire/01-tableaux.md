@@ -49,6 +49,7 @@ $user["email"] = "m@x.fr"; // ajoute une clé
 ## 🔁 Parcourir un tableau : `foreach`
 
 ### Les valeurs
+
 ```php
 <?php
 foreach ($fruits as $fruit) {
@@ -57,6 +58,7 @@ foreach ($fruits as $fruit) {
 ```
 
 ### Les paires clé → valeur
+
 ```php
 <?php
 foreach ($user as $cle => $valeur) {
@@ -85,6 +87,7 @@ foreach ($panier as $ligne) {
     echo "{$ligne['produit']} : {$ligne['qte']} × {$ligne['prix']} €" . PHP_EOL;
 }
 ```
+
 > 💡 Note les **guillemets simples** pour la clé à l'intérieur d'une chaîne à guillemets doubles :
 > `"{$ligne['produit']}"`. C'est la bonne syntaxe.
 
@@ -92,15 +95,15 @@ foreach ($panier as $ligne) {
 
 ## 🛠️ Quelques fonctions de tableaux essentielles
 
-| Fonction | Rôle |
-|---|---|
-| `count($t)` | Nombre d'éléments |
-| `in_array($v, $t)` | La valeur existe-t-elle ? (retourne `bool`) |
-| `array_key_exists($k, $t)` | La **clé** existe-t-elle ? |
-| `array_keys($t)` / `array_values($t)` | La liste des clés / des valeurs |
-| `sort($t)` / `rsort($t)` | Trier (croissant / décroissant) — modifie `$t` |
-| `array_push` / `array_pop` | Ajouter / retirer à la fin |
-| `unset($t[$k])` | Supprimer un élément par sa clé |
+| Fonction                                  | Rôle                                             |
+| ----------------------------------------- | ------------------------------------------------- |
+| `count($t)`                             | Nombre d'éléments                               |
+| `in_array($v, $t)`                      | La valeur existe-t-elle ? (retourne`bool`)      |
+| `array_key_exists($k, $t)`              | La**clé** existe-t-elle ?                  |
+| `array_keys($t)` / `array_values($t)` | La liste des clés / des valeurs                  |
+| `sort($t)` / `rsort($t)`              | Trier (croissant / décroissant) — modifie`$t` |
+| `array_push` / `array_pop`            | Ajouter / retirer à la fin                       |
+| `unset($t[$k])`                         | Supprimer un élément par sa clé                |
 
 ```php
 <?php
@@ -125,7 +128,7 @@ if (in_array("pomme", $fruits)) {
 
 ## 🎓 Ce qu'il faut retenir
 
-- **Indexé** = liste (indices depuis 0) ; **associatif** = clé → valeur (comme un dictionnaire).
+- **Indexé** = liste (indices depuis 0) ; **associatif** = clé → valeur (com**B**me un dictionnaire).
 - Ajouter : `$t[] = ...` (fin) ou `$t["cle"] = ...` (clé). Accès sûr : `$t["cle"] ?? défaut`.
 - **`foreach`** est la boucle du backend ; `foreach ($t as $cle => $val)` pour les paires.
 - Une **liste de tableaux associatifs** modélise une collection d'objets.
