@@ -1,11 +1,8 @@
 # Leçon 3.2 — Encapsulation et visibilité
 
-> 🎯 **Objectif** : protéger l'état interne d'un objet avec la **visibilité** (`private`,
-> `protected`, `public`) et garantir qu'il reste **toujours valide** (les invariants).
-
 ---
 
-## 🔒 Le problème : un état modifiable n'importe comment
+# 🔒 Le problème : un état modifiable n'importe comment
 
 Si tout est `public`, n'importe qui peut mettre l'objet dans un état **incohérent** :
 
@@ -60,6 +57,7 @@ class CompteBancaire
     }
 }
 ```
+
 ```php
 <?php
 $compte = new CompteBancaire(100);
@@ -68,6 +66,7 @@ $compte->retirer(30);
 echo $compte->solde();     // 120
 $compte->solde = -1000;    // ❌ ERREUR : propriété private, inaccessible de l'extérieur
 ```
+
 La règle « le solde ne peut pas devenir négatif ou incohérent » est **garantie** : peu importe
 qui utilise la classe, l'état reste **valide**. C'est un **invariant** protégé.
 
@@ -75,11 +74,11 @@ qui utilise la classe, l'état reste **valide**. C'est un **invariant** protég�
 
 ## 👁️ Les trois niveaux de visibilité
 
-| Mot-clé | Accessible depuis… |
-|---|---|
-| **`public`** | partout (l'extérieur, les sous-classes, la classe) |
-| **`protected`** | la classe **et** ses **sous-classes** (héritage) |
-| **`private`** | **uniquement** la classe elle-même |
+| Mot-clé                | Accessible depuis…                                          |
+| ----------------------- | ------------------------------------------------------------ |
+| **`public`**    | partout (l'extérieur, les sous-classes, la classe)          |
+| **`protected`** | la classe**et** ses **sous-classes** (héritage) |
+| **`private`**   | **uniquement** la classe elle-même                    |
 
 ```php
 <?php
@@ -121,6 +120,7 @@ class Utilisateur
     }
 }
 ```
+
 > ⚠️ **Ne crée pas mécaniquement un getter/setter public pour CHAQUE propriété** : ce serait
 > revenir à du « tout public » déguisé. Expose seulement ce qui a un **sens métier**. Un bon
 > objet offre des **actions** (`retirer()`, `changerEmail()`), pas juste des accès bruts.

@@ -36,6 +36,7 @@ $rex = new Chien("Rex");
 echo $rex->dormir();   // hérité d'Animal : "Rex dort 😴"
 echo $rex->aboyer();   // propre à Chien : "Rex fait Wouf !"
 ```
+
 > 💡 `protected` (et non `private`) sur `$nom` permet à la sous-classe `Chien` d'y accéder.
 
 ---
@@ -95,6 +96,7 @@ class Manager extends Employe
 echo (new Developpeur("Marie"))->presentation();   // "Marie gagne 3500 € / mois."
 // new Employe("X");   // ❌ ERREUR : on ne peut pas instancier une classe abstraite
 ```
+
 > 🧠 `presentation()` appelle `$this->salaire()` **sans savoir** quelle sous-classe c'est :
 > c'est du **polymorphisme** (leçon suivante). Le code commun vit **à un seul endroit** (DRY).
 

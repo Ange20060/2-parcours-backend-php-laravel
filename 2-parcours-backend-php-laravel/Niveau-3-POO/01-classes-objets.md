@@ -35,6 +35,7 @@ class Voiture
     }
 }
 ```
+
 - **Propriété** = une variable qui appartient à l'objet.
 - **Méthode** = une fonction qui appartient à l'objet.
 - **`$this`** = « l'objet courant », celui sur lequel la méthode est appelée.
@@ -57,6 +58,7 @@ $autreVoiture = new Voiture();     // un AUTRE objet, indépendant
 $autreVoiture->accelerer(50);
 echo $autreVoiture->vitesse;       // 50 (chaque objet a SON état)
 ```
+
 > 💡 On utilise la **flèche `->`** pour accéder à ce qui appartient à un objet. Chaque objet a
 > **son propre état** : modifier `$maVoiture` ne touche pas `$autreVoiture`.
 
@@ -86,6 +88,7 @@ class Voiture
 $maVoiture = new Voiture("Peugeot", "bleue");
 echo $maVoiture->marque;   // Peugeot
 ```
+
 > ✨ **Promotion de propriétés** (PHP 8) : déclarer `public string $marque` **directement dans
 > le constructeur** crée **et** initialise la propriété en une seule ligne. Très concis — tu le
 > verras partout, y compris dans Laravel.
@@ -119,14 +122,14 @@ echo $r->aire();   // 20
 
 ## 🆚 Classe vs objet — le vocabulaire
 
-| Terme | Sens |
-|---|---|
-| **Classe** | Le plan / le moule (défini une fois) |
-| **Objet / instance** | Un exemplaire concret (`new Classe()`) |
-| **Propriété** | Une donnée de l'objet |
-| **Méthode** | Une action de l'objet |
-| **`$this`** | L'objet courant, à l'intérieur d'une méthode |
-| **Constructeur** | Méthode `__construct` appelée à la création |
+| Terme                      | Sens                                             |
+| -------------------------- | ------------------------------------------------ |
+| **Classe**           | Le plan / le moule (défini une fois)            |
+| **Objet / instance** | Un exemplaire concret (`new Classe()`)         |
+| **Propriété**      | Une donnée de l'objet                           |
+| **Méthode**         | Une action de l'objet                            |
+| **`$this`**        | L'objet courant, à l'intérieur d'une méthode  |
+| **Constructeur**     | Méthode`__construct` appelée à la création |
 
 ---
 

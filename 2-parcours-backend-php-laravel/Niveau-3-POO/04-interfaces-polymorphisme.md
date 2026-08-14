@@ -32,6 +32,7 @@ class Rectangle implements Forme
     public function aire(): float { return $this->l * $this->h; }
 }
 ```
+
 Toute classe qui `implements Forme` **s'engage** à fournir une méthode `aire()`. Si elle
 l'oublie → **erreur** à la compilation. Le contrat est **garanti**.
 
@@ -60,6 +61,7 @@ class Triangle implements Forme
 }
 afficherAire(new Triangle(6, 2));  // marche immédiatement 🎉
 ```
+
 `afficherAire` ne connaît **pas** les classes concrètes : elle connaît seulement le **contrat**
 `Forme`. On peut ajouter des formes à l'infini **sans jamais la modifier**.
 
@@ -70,11 +72,11 @@ afficherAire(new Triangle(6, 2));  // marche immédiatement 🎉
 
 ## 🆚 Interface ou classe abstraite ?
 
-| | **Interface** | **Classe abstraite** |
-|---|---|---|
-| Contient du code ? | Non (juste des signatures)\* | Oui (méthodes communes + abstraites) |
-| Combien par classe ? | **Plusieurs** (`implements A, B, C`) | **Une seule** (`extends`) |
-| Relation | « **peut faire** / sait faire » | « **est un** » |
+|                      | **Interface**                          | **Classe abstraite**            |
+| -------------------- | -------------------------------------------- | ------------------------------------- |
+| Contient du code ?   | Non (juste des signatures)\*                 | Oui (méthodes communes + abstraites) |
+| Combien par classe ? | **Plusieurs** (`implements A, B, C`) | **Une seule** (`extends`)     |
+| Relation             | «**peut faire** / sait faire »       | «**est un** »                 |
 
 \* Une interface peut définir des **constantes**, mais pas d'état ni de logique.
 
@@ -114,6 +116,7 @@ $caisse = new Caisse();
 echo $caisse->encaisser(new CarteBancaire(), 49.99);
 echo $caisse->encaisser(new Paypal(), 120.0);
 ```
+
 Ajouter Apple Pay demain = **une nouvelle classe** qui `implements MoyenPaiement`. `Caisse` ne
 change pas. C'est **exactement** ce que fait Laravel avec ses « contrats ».
 
