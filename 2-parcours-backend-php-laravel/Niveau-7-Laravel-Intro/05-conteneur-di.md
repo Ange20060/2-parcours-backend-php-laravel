@@ -18,6 +18,7 @@ class CommandeService
     public function __construct(private Logger $logger) {}   // reçue, pas créée
 }
 ```
+
 Le problème « à la main » : quelqu'un doit **fabriquer** le `Logger` et le passer. Sur une grosse
 app avec des dizaines de dépendances imbriquées, ça devient un casse-tête. **Laravel le fait pour toi.**
 
@@ -43,6 +44,7 @@ class PageController extends Controller
     }
 }
 ```
+
 Tu n'écris **jamais** `new SalutationService()` : le conteneur le crée, résout **ses** propres
 dépendances (récursivement), et te le donne prêt à l'emploi.
 
@@ -69,6 +71,7 @@ public function register(): void
     );
 }
 ```
+
 Désormais, n'importe quel contrôleur/service qui demande `NotifieurInterface` reçoit un
 `EmailNotifieur`. Pour passer au SMS, tu changes **une** ligne — sans toucher au reste (**Open/Closed**).
 En test, tu peux lier une **fausse** implémentation.
@@ -98,6 +101,7 @@ Route::get(...);          // façade Route
 DB::table('users')->get();
 Auth::user();
 ```
+
 > 💡 `Route`, `DB`, `Auth`, `Cache`… sont des façades. Sous le capot, elles utilisent le conteneur.
 > C'est pratique et lisible ; en interne, ça reste de l'injection de dépendances.
 
@@ -137,5 +141,5 @@ juste de la bonne conception, industrialisée.
 
 🎉 **Tu as fini le Niveau 7 !** Tu connais Laravel : **MVC**, **routing**, **contrôleurs**,
 **Blade**, et le **conteneur** qui automatise l'injection de dépendances. Fais les
-[exercices](./exercices.md), puis attaque **[Eloquent & les migrations](../Niveau-8-Laravel-Eloquent/)** —
+[exercices](./exercices.md), puis attaque **[Eloquent &amp; les migrations](../Niveau-8-Laravel-Eloquent/)** —
 pour manipuler la base sans écrire une ligne de SQL. 🚀

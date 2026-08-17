@@ -13,6 +13,6 @@ trait Horodatable
 }
 
 class Article { use Horodatable; }
-class Commentaire { use Horodatable; }   // aucune relation d'héritage, code réutilisé
+class Commentaire { use Horodatable; }
 
 echo (new Article())->creerHorodatage() . PHP_EOL;

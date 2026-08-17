@@ -19,6 +19,7 @@ public function accueil()
     return view('accueil', ['nom' => 'Marie']);
 }
 ```
+
 ```blade
 {{-- resources/views/accueil.blade.php --}}
 <h1>Bonjour {{ $nom }}</h1>
@@ -31,6 +32,7 @@ public function accueil()
 ```blade
 <p>{{ $article->titre }}</p>
 ```
+
 `{{ $var }}` affiche la valeur **en l'échappant automatiquement** (comme `htmlspecialchars`) →
 **protection XSS intégrée**. Rappelle-toi la leçon 5.4 : ici, Laravel le fait **pour toi**.
 
@@ -60,6 +62,7 @@ public function accueil()
     <li>Aucun article.</li>
 @endforelse
 ```
+
 > 💡 `@forelse / @empty` gère élégamment le cas « liste vide » — un réflexe propre.
 
 ---
@@ -83,6 +86,7 @@ le **remplit** — au lieu de recopier la structure partout.
 </body>
 </html>
 ```
+
 ```blade
 {{-- resources/views/articles/index.blade.php --}}
 @extends('layouts.app')
@@ -96,6 +100,7 @@ le **remplit** — au lieu de recopier la structure partout.
     @endforeach
 @endsection
 ```
+
 La structure vit **à un seul endroit** (le layout) → **[DRY](../Principes-Genie-Logiciel/01-DRY.md)**.
 
 > 🔎 Laravel moderne propose aussi les **composants Blade** (`<x-carte>`) — une façon encore plus
@@ -113,6 +118,7 @@ La structure vit **à un seul endroit** (le layout) → **[DRY](../Principes-Gen
     <button>Créer</button>
 </form>
 ```
+
 > 💡 `@csrf` insère le **jeton CSRF** (leçon 5.4) automatiquement. `route('articles.show', ...)`
 > génère l'URL à partir du **nom** de la route → pas d'URL codée en dur (**SSOT**).
 
@@ -135,4 +141,4 @@ La structure vit **à un seul endroit** (le layout) → **[DRY](../Principes-Gen
 - **Layouts** (`@extends`/`@yield`/`@section`) évitent de répéter la structure → DRY.
 - `@csrf` sur les formulaires, `route('nom')` pour les URL (pas d'URL en dur).
 
-👉 Leçon suivante : [Le conteneur de services & l'injection de dépendances](./05-conteneur-di.md)
+👉 Leçon suivante : [Le conteneur de services &amp; l&#39;injection de dépendances](./05-conteneur-di.md)

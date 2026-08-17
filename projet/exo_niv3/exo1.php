@@ -34,24 +34,4 @@ class CompteBancaire
 $compte = new CompteBancaire(100);
 $compte->deposer(50);
 $compte->retirer(30);
-echo $compte->solde() . PHP_EOL;   // 120
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+echo $compte->solde() . PHP_EOL;

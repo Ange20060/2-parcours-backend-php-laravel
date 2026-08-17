@@ -22,6 +22,7 @@ sécurisé, avec une **structure** claire. Tu écris seulement **ta** logique m�
 ## 🌟 Pourquoi Laravel ?
 
 **Laravel** est le framework PHP le plus populaire. Il apporte :
+
 - un **routing** élégant (`Route::get(...)`),
 - l'**ORM Eloquent** (manipuler la base comme des objets — fini le SQL à la main),
 - la **validation**, l'**authentification**, les **API**, les **tests**… intégrés,
@@ -48,6 +49,7 @@ composer create-project laravel/laravel mon-app
 cd mon-app
 php artisan serve
 ```
+
 Ouvre `http://127.0.0.1:8000` → la page d'accueil Laravel s'affiche. 🎉
 
 > 🔎 Alternative : l'installeur `laravel new mon-app`. Cherche « installation laravel » pour ta
@@ -66,6 +68,7 @@ php artisan make:model ...       # générer un modèle
 php artisan migrate              # créer les tables en base
 php artisan tinker               # une console interactive dans le contexte de l'app
 ```
+
 > 💡 `php artisan make:...` t'évite d'écrire le squelette à la main → gain de temps, cohérence,
 > et **[DRY](../Principes-Genie-Logiciel/01-DRY.md)** à l'échelle du projet.
 
@@ -82,6 +85,7 @@ APP_NAME=MonApp
 APP_ENV=local
 DB_CONNECTION=sqlite
 ```
+
 Pour SQLite : crée un fichier `database/database.sqlite` et mets `DB_CONNECTION=sqlite`.
 
 ---
@@ -101,4 +105,4 @@ Pour SQLite : crée un fichier `database/database.sqlite` et mets `DB_CONNECTION
 - On crée un projet avec `composer create-project laravel/laravel`, on le lance avec `php artisan serve`.
 - **Artisan** génère du code (`make:...`) ; le **`.env`** stocke la config par environnement (jamais committé).
 
-👉 Leçon suivante : [L'architecture MVC & le cycle d'une requête](./02-mvc-cycle-requete.md)
+👉 Leçon suivante : [L&#39;architecture MVC &amp; le cycle d&#39;une requête](./02-mvc-cycle-requete.md)

@@ -18,12 +18,13 @@ declare(strict_types=1);
 $pdo = new PDO('sqlite:app.db');
 
 // MySQL (exemple)
-// $pdo = new PDO('mysql:host=localhost;dbname=app;charset=utf8mb4', 'user', 'motdepasse');
+ $pdo = new PDO('mysql:host=localhost;dbname=app;charset=utf8mb4', 'user', 'motdepasse');
 
 // TOUJOURS activer le mode exception (Fail Fast : une erreur SQL lève une exception)
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 ```
+
 > 🧠 `ERRMODE_EXCEPTION` est **indispensable** : sinon PDO échoue **en silence** (corruption
 > silencieuse). Avec, une erreur SQL devient une `PDOException` qu'on peut rattraper.
 
@@ -64,6 +65,7 @@ foreach ($users as $u) {
     echo $u['nom'] . PHP_EOL;
 }
 ```
+
 > 💡 `query()` convient pour une requête **sans variable**. Dès qu'il y a une **valeur
 > utilisateur**, utilise **`prepare()` + `execute()`**.
 
@@ -108,6 +110,7 @@ try {
     throw $e;                // on remonte (Fail Fast)
 }
 ```
+
 Sans transaction, si le crédit échoue après le débit, **l'argent disparaît**. La transaction
 garantit l'**atomicité** (tout ou rien).
 

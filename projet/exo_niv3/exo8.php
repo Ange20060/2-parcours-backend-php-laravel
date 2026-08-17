@@ -27,12 +27,12 @@ class Paypal implements MoyenPaiement
 
 class Caisse
 {
-    public function __construct(private MoyenPaiement $moyen) {}   // composition
+    public function __construct(private MoyenPaiement $moyen) {}
 
     public function encaisser(float $montant): string
     {
         if ($montant <= 0) {
-            throw new InvalidArgumentException("Montant invalide.");   // Fail Fast
+            throw new InvalidArgumentException("Montant invalide.");
         }
         return $this->moyen->payer($montant);
     }

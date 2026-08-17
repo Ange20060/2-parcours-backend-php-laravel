@@ -12,12 +12,12 @@ class ConsoleLogger implements Logger
 
 class LoggerNul implements Logger
 {
-    public function log(string $message): void { /* ne fait rien */ }
+    public function log(string $message): void { }
 }
 
 class CommandeService
 {
-    public function __construct(private Logger $logger) {}   // dépend de l'ABSTRACTION
+    public function __construct(private Logger $logger) {}
 
     public function traiter(): void
     {
@@ -25,5 +25,5 @@ class CommandeService
     }
 }
 
-(new CommandeService(new ConsoleLogger()))->traiter();   // affiche
-(new CommandeService(new LoggerNul()))->traiter();        // silencieux
+(new CommandeService(new ConsoleLogger()))->traiter();
+(new CommandeService(new LoggerNul()))->traiter();

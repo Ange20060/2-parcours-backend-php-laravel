@@ -17,7 +17,9 @@ public function index()
     );
 }
 ```
+
 La réponse inclut automatiquement les métadonnées :
+
 ```json
 {
   "data": [ ... ],
@@ -25,6 +27,7 @@ La réponse inclut automatiquement les métadonnées :
   "meta":  { "current_page": 1, "last_page": 8, "per_page": 15, "total": 116 }
 }
 ```
+
 > ⚠️ Renvoyer 10 000 lignes d'un coup **sature** la mémoire et rend l'API lente. La pagination
 > borne la charge — c'est **non négociable** sur une liste.
 
@@ -50,6 +53,7 @@ public function index(Request $request)
     return ArticleResource::collection($query->paginate(15));
 }
 ```
+
 Appels : `/api/articles?published=1&search=php&sort=oldest&page=2`.
 
 > 🔎 Pour des filtres riches, cherche le package **spatie/laravel-query-builder** — il standardise
@@ -68,6 +72,7 @@ Route::prefix('v1')->group(function () {
 });
 // endpoints : /api/v1/articles
 ```
+
 > 🧠 Le contrat d'une API est une **promesse** aux clients. Versionner permet de faire évoluer le
 > **v2** sans casser le **v1** — c'est de l'**[Explicite](../Principes-Genie-Logiciel/08-explicite-vs-implicite.md)**
 > et du respect des consommateurs.
@@ -91,9 +96,11 @@ Route::post('/login', ...)->middleware('throttle:5,1');   // login : 5 essais / 
 ## 🧯 Un format d'erreur cohérent
 
 Laravel renvoie déjà des erreurs JSON standard quand `Accept: application/json` est présent :
+
 ```json
 { "message": "The titre field is required.", "errors": { "titre": ["..."] } }
 ```
+
 Garde ce format **uniforme** sur toute l'API (validation 422, 404, 401, 403…). Un client doit
 pouvoir traiter les erreurs **de la même façon partout** — c'est le **[SSOT](../Principes-Genie-Logiciel/05-SSOT.md)**
 du format d'erreur.
@@ -102,13 +109,13 @@ du format d'erreur.
 
 ## ✅ La checklist d'une API pro
 
-- [ ] Bons **verbes** et **codes de statut** (201, 204, 401, 403, 404, 422)
-- [ ] **Resources** pour un JSON maîtrisé (pas de modèle brut)
-- [ ] **Auth** par token (Sanctum) + **Policies** (ownership)
-- [ ] **Pagination** sur les listes, **filtres/tri** via la query string
-- [ ] **Rate limiting**, surtout sur le login
-- [ ] Format d'**erreur cohérent**
-- [ ] **Versionnement** (`/v1`) et **documentation**
+- [X] Bons **verbes** et **codes de statut** (201, 204, 401, 403, 404, 422)
+- [X] **Resources** pour un JSON maîtrisé (pas de modèle brut)
+- [X] **Auth** par token (Sanctum) + **Policies** (ownership)
+- [X] **Pagination** sur les listes, **filtres/tri** via la query string
+- [X] **Rate limiting**, surtout sur le login
+- [X] Format d'**erreur cohérent**
+- [X] **Versionnement** (`/v1`) et **documentation**
 
 ---
 

@@ -5,11 +5,13 @@
 ---
 
 ## Exercice 1 — Contrôleur ressource
+
 ```php
 <?php
 // routes/web.php
 Route::resource('articles', ArticleController::class);
 ```
+
 ```php
 <?php
 // app/Http/Controllers/ArticleController.php
@@ -24,10 +26,12 @@ public function show(Article $article)   // route model binding : Laravel inject
     return view('articles.show', ['article' => $article]);
 }
 ```
+
 > 💡 `Article $article` dans la signature = **route model binding** : Laravel récupère
 > automatiquement l'article correspondant à l'`{article}` de l'URL (ou renvoie 404).
 
 ## Exercice 2 — Validation en ligne
+
 ```php
 <?php
 public function store(Request $request)
@@ -40,11 +44,13 @@ public function store(Request $request)
     return redirect()->route('articles.index')->with('success', 'Article créé !');
 }
 ```
+
 Si la validation échoue, Laravel **redirige en arrière** automatiquement, avec les **erreurs**
 et les **anciennes valeurs** (`old()`) en session. Le code après `validate()` ne s'exécute
 **que** si tout est valide — c'est du **Fail Fast** intégré.
 
 ## Exercice 3 — Form Request
+
 ```php
 <?php
 // app/Http/Requests/StoreArticleRequest.php
@@ -61,6 +67,7 @@ class StoreArticleRequest extends FormRequest
     }
 }
 ```
+
 ```php
 <?php
 // contrôleur — devient minimal
@@ -70,9 +77,11 @@ public function store(StoreArticleRequest $request)
     return redirect()->route('articles.index');
 }
 ```
+
 La validation est **isolée** (SoC), **réutilisable** (DRY) et le contrôleur reste **fin**.
 
 ## Exercice 4 — Messages personnalisés
+
 ```php
 <?php
 // dans StoreArticleRequest
@@ -85,12 +94,14 @@ public function messages(): array
     ];
 }
 ```
+
 ```blade
 {{-- dans la vue --}}
 @error('title') <p class="erreur">{{ $message }}</p> @enderror
 ```
 
 ## Exercice 5 — Middleware
+
 ```php
 <?php
 // routes/web.php
@@ -98,6 +109,7 @@ Route::resource('articles', ArticleController::class)
     ->middleware('auth')
     ->only(['create', 'store', 'edit', 'update', 'destroy']);
 ```
+
 ```php
 <?php
 // app/Http/Middleware/EnsureArticleOwner.php
@@ -110,9 +122,11 @@ public function handle(Request $request, Closure $next): Response
     return $next($request);
 }
 ```
+
 Le middleware **filtre** la requête avant le contrôleur : responsabilité isolée (SoC).
 
 ## Exercice 6 — Service
+
 ```php
 <?php
 // app/Services/ArticleService.php
@@ -129,6 +143,7 @@ class ArticleService
     }
 }
 ```
+
 ```php
 <?php
 // contrôleur — il ORCHESTRE, il ne fait pas le métier lui-même
@@ -138,6 +153,7 @@ public function publish(Article $article, ArticleService $service)
     return back()->with('success', 'Article publié.');
 }
 ```
+
 La logique métier est **hors** du contrôleur : on peut la **tester** isolément, la **réutiliser**
 (depuis une commande Artisan, un job…), et le contrôleur a **une seule responsabilité**
 (orchestrer la requête HTTP). C'est le **S** de SOLID.
@@ -145,6 +161,7 @@ La logique métier est **hors** du contrôleur : on peut la **tester** isolémen
 ---
 
 ## 🎉 Bilan du Niveau 9
+
 Contrôleurs fins, validation en Form Requests, middlewares pour la sécurité, logique en
 services : tu construis des fonctionnalités web **propres et maintenables**.
-👉 [Niveau 10 : API REST & Authentification](../Niveau-10-Laravel-API/)
+👉 [Niveau 10 : API REST &amp; Authentification](../Niveau-10-Laravel-API/)

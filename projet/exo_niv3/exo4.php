@@ -6,9 +6,9 @@ abstract class Employe
 {
     public function __construct(protected string $nom) {}
 
-    abstract public function salaire(): float;   // chaque sous-classe DOIT l'implémenter
+    abstract public function salaire(): float;
 
-    public function presentation(): string       // comportement commun
+    public function presentation(): string
     {
         return "{$this->nom} gagne " . $this->salaire() . " € / mois.";
     }

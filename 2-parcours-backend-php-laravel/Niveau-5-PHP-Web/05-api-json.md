@@ -36,6 +36,7 @@ $produits = [
 
 echo json_encode($produits, JSON_UNESCAPED_UNICODE);
 ```
+
 > 💡 Le `Content-Type` dit au client « je t'envoie du JSON » ; sans lui, il pourrait l'interpréter
 > comme du texte brut. `JSON_UNESCAPED_UNICODE` garde les accents lisibles.
 
@@ -110,6 +111,7 @@ if ($methode === 'GET' && $chemin === '/produits') {
     echo json_encode(['erreur' => 'route inconnue']);
 }
 ```
+
 > 🧠 Fais-le une fois **à la main** pour comprendre ce qui se passe. Ensuite, tu apprécieras
 > **Laravel** : `Route::get('/produits', ...)`, la validation, les *Resources*, les codes de
 > statut… tout ce que tu écris ici péniblement devient **une ligne propre** (Niveau 7 à 10).
@@ -122,6 +124,7 @@ if ($methode === 'GET' && $chemin === '/produits') {
 curl http://localhost:8000/api.php?id=1
 curl -X POST -d '{"nom":"Écran"}' http://localhost:8000/api.php
 ```
+
 Ou avec **Postman** / l'extension REST de VSCode. Vérifie le **corps** ET le **code de statut**.
 
 ---
@@ -129,8 +132,7 @@ Ou avec **Postman** / l'extension REST de VSCode. Vérifie le **corps** ET le **
 ## 🔎 À toi de chercher
 
 > 1. Qu'est-ce que **CORS** et pourquoi une API appelée depuis un navigateur en a besoin ?
-> 2. Cherche la structure d'une réponse d'erreur JSON **cohérente** (ex : `{ "message": ...,
->    "errors": {...} }`) — un format unique pour toute l'API (**[SSOT](../Principes-Genie-Logiciel/05-SSOT.md)** du rendu).
+> 2. Cherche la structure d'une réponse d'erreur JSON **cohérente** (ex : `{ "message": ..., "errors": {...} }`) — un format unique pour toute l'API (**[SSOT](../Principes-Genie-Logiciel/05-SSOT.md)** du rendu).
 > 3. Compare ton routeur manuel avec `Route::apiResource(...)` de Laravel : que gagne-t-on ?
 
 ---

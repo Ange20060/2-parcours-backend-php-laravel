@@ -22,5 +22,4 @@ enum StatutCommande: string
     }
 }
 
-echo StatutCommande::Payee->libelle() . PHP_EOL;   // Payée
-
+echo StatutCommande::Payee->libelle() . PHP_EOL;

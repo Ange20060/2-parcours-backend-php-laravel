@@ -19,7 +19,7 @@ class Rectangle implements Forme
     public function aire(): float { return $this->largeur * $this->hauteur; }
 }
 
-class Triangle implements Forme   // ajouté SANS toucher afficherAire (Open/Closed)
+class Triangle implements Forme 
 {
     public function __construct(private float $base, private float $hauteur) {}
     public function aire(): float { return $this->base * $this->hauteur / 2; }
