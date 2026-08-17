@@ -38,4 +38,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('articles', ArticleApiController::class)
         ->except(['index', 'show']);
 
-});
+});  
