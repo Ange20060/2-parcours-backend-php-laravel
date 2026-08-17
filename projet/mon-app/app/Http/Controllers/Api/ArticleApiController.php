@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\StoreArticleRequest;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Services\ArticleService;
 use App\Http\Resources\ArticleResource;
+use App\Http\Requests\UpdateArticleRequest;
+use App\Http\Controllers\Controller;
 
 class ArticleController extends Controller
 {
@@ -14,9 +16,15 @@ class ArticleController extends Controller
    * Display a listing of the resource.
    */
 
-  public function index()
-  {
-   return ArticleResource::collection(Article::with('user')->paginate(10));
+ public function index(Request $request)
+{
+    $query = Article::with('user');
+
+    if ($request->has('published')) {
+        $query->where('published', $request->boolean('published'));
+    }
+
+    return ArticleResource::collection($query->latest()->paginate(15));
 }
 
 
@@ -34,11 +42,13 @@ class ArticleController extends Controller
    * Store a newly created resource in storage.
    */
 
-  public function store(StoreArticleRequest $request)
-  {
-    Article::create($request->validated());
-    return redirect()->route('articles.index');
-  }
+public function store(StoreArticleRequest $request)
+{
+    $article = $request->user()->articles()->create($request->validated());
+    return new ArticleResource($article);
+}
+
+
 
   /**
    * Display the specified resource.
@@ -59,10 +69,14 @@ class ArticleController extends Controller
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, string $id)
-  {
-    //
-  }
+  public function update(UpdateArticleRequest $request, Article $article)
+{
+    if ($article->user_id !== $request->user()->id) {
+        abort(403, "Action non autorisée.");
+    }
+    $article->update($request->validated());
+    return new ArticleResource($article);
+}
 
   /**
    * Remove the specified resource from storage.
@@ -77,4 +91,7 @@ class ArticleController extends Controller
     $service->publier($article);
     return back()->with('success', 'Article publié.');
   }
+
+
+
 }

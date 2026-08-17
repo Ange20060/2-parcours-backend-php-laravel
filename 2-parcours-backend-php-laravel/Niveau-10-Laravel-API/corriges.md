@@ -5,20 +5,23 @@
 ---
 
 ## Exercice 1 — Routes RESTful
+
 ```php
 <?php
 // routes/api.php
 Route::apiResource('articles', ArticleApiController::class);
 ```
-| Endpoint | Verbe | Action | Statut succès |
-|---|---|---|---|
-| `/api/articles` | GET | index (liste) | 200 |
-| `/api/articles` | POST | store (créer) | **201** |
-| `/api/articles/{id}` | GET | show (détail) | 200 |
-| `/api/articles/{id}` | PUT/PATCH | update | 200 |
-| `/api/articles/{id}` | DELETE | destroy | **204** (No Content) |
+
+| Endpoint               | Verbe     | Action         | Statut succès             |
+| ---------------------- | --------- | -------------- | -------------------------- |
+| `/api/articles`      | GET       | index (liste)  | 200                        |
+| `/api/articles`      | POST      | store (créer) | **201**              |
+| `/api/articles/{id}` | GET       | show (détail) | 200                        |
+| `/api/articles/{id}` | PUT/PATCH | update         | 200                        |
+| `/api/articles/{id}` | DELETE    | destroy        | **204** (No Content) |
 
 ## Exercice 2 — API Resource
+
 ```php
 <?php
 // app/Http/Resources/ArticleResource.php
@@ -34,6 +37,7 @@ public function toArray(Request $request): array
     ];
 }
 ```
+
 ```php
 <?php
 public function index()
@@ -41,11 +45,13 @@ public function index()
     return ArticleResource::collection(Article::with('user')->paginate(10));
 }
 ```
+
 Centraliser le format dans une Resource = **SSOT du rendu** : si le format change, on le change
 **à un seul endroit**, et toutes les réponses restent **cohérentes**. Un `json_encode` éparpillé
 violerait DRY et deviendrait incohérent.
 
 ## Exercice 3 — Codes de statut
+
 ```php
 <?php
 public function store(StoreArticleRequest $request)
@@ -56,11 +62,13 @@ public function store(StoreArticleRequest $request)
         ->setStatusCode(201);                 // 201 Created
 }
 ```
+
 - `show` d'un id inexistant → **404** automatique (route model binding).
 - Validation échouée → **422 Unprocessable Entity** avec `{ "message": ..., "errors": {...} }`
   automatiquement (Laravel le fait pour les requêtes JSON).
 
 ## Exercice 4 — Sanctum
+
 ```php
 <?php
 // routes/api.php
@@ -79,9 +87,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('articles', ArticleApiController::class)->except(['index', 'show']);
 });
 ```
+
 Le client envoie ensuite l'en-tête `Authorization: Bearer <token>` sur les requêtes protégées.
 
 ## Exercice 5 — Utilisateur authentifié
+
 ```php
 <?php
 public function store(StoreArticleRequest $request)
@@ -99,10 +109,12 @@ public function update(UpdateArticleRequest $request, Article $article)
     return new ArticleResource($article);
 }
 ```
+
 > `$request->user()->articles()->create(...)` associe l'article à l'utilisateur du token **et**
 > respecte la relation : plus besoin de passer `user_id` à la main (Explicite + sûr).
 
 ## Exercice 6 — Pagination & filtres
+
 ```php
 <?php
 public function index(Request $request)
@@ -116,6 +128,7 @@ public function index(Request $request)
     return ArticleResource::collection($query->latest()->paginate(15));
 }
 ```
+
 Renvoyer 10 000 lignes d'un coup **sature** la mémoire du serveur et du client, et rend la
 réponse lente. La pagination borne la charge (page par page) et fournit des métadonnées
 (`links`, `meta`) pour naviguer.
@@ -123,7 +136,8 @@ réponse lente. La pagination borne la charge (page par page) et fournit des mé
 ---
 
 ## 🎉 Bilan du Niveau 10
+
 Tu construis des **API REST** propres : endpoints corrects, formats centralisés (Resources),
 bons codes de statut, **authentification par token** (Sanctum), pagination. C'est le savoir-faire
 backend le plus demandé.
-👉 [Niveau 11 : Tests & TDD](../Niveau-11-Tests/)
+👉 [Niveau 11 : Tests &amp; TDD](../Niveau-11-Tests/)
