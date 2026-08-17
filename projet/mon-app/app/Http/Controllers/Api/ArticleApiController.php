@@ -10,13 +10,12 @@ use App\Http\Resources\ArticleResource;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Http\Controllers\Controller;
 
-class ArticleController extends Controller
+class ArticleApiController extends Controller
 {
-  /**
-   * Display a listing of the resource.
-   */
-
- public function index(Request $request)
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(Request $request)
 {
     $query = Article::with('user');
 
@@ -27,49 +26,27 @@ class ArticleController extends Controller
     return ArticleResource::collection($query->latest()->paginate(15));
 }
 
-
-
-
-  /**
-   * Show the form for creating a new resource.
-   */
-  public function create()
-  {
-    //
-  }
-
-  /**
-   * Store a newly created resource in storage.
-   */
-
-public function store(StoreArticleRequest $request)
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreArticleRequest $request)
 {
     $article = $request->user()->articles()->create($request->validated());
     return new ArticleResource($article);
 }
 
-
-
-  /**
-   * Display the specified resource.
-   */
-  public function show(Article $article)
+    /**
+     * Display the specified resource.
+     */
+    public function show(Article $article)
   {
     return view('articles.show', ['article' => $article]);
   }
 
-  /**
-   * Show the form for editing the specified resource.
-   */
-  public function edit(string $id)
-  {
-    //
-  }
-
-  /**
-   * Update the specified resource in storage.
-   */
-  public function update(UpdateArticleRequest $request, Article $article)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdateArticleRequest $request, Article $article)
 {
     if ($article->user_id !== $request->user()->id) {
         abort(403, "Action non autorisée.");
@@ -78,20 +55,16 @@ public function store(StoreArticleRequest $request)
     return new ArticleResource($article);
 }
 
-  /**
-   * Remove the specified resource from storage.
-   */
-  public function destroy(string $id)
-  {
-    //
-  }
-
-  public function publish(Article $article, ArticleService $service)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+    public function publish(Article $article, ArticleService $service)
   {
     $service->publier($article);
     return back()->with('success', 'Article publié.');
   }
-
-
-
 }
