@@ -2,42 +2,27 @@
 
 namespace Database\Factories;
 
+use App\Models\Article;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-
 /**
- * @extends Factory<User>
+ * @extends Factory<Article>
  */
-class UserFactory extends Factory
+class ArticleFactory extends Factory
 {
-  /**
-   * The current password being used by the factory.
-   */
-  protected static ?string $password;
-
-  /**
-   * Define the model's default state.
-   *
-   * @return array<string, mixed>
-   */
-  public function definition(): array
-  {
-    return [
-      'title'     => fake()->sentence(),
-      'content'   => fake()->paragraphs(3, true),
-      'published' => fake()->boolean(),
-      'user_id'   => \App\Models\User::factory(),
-    ];
-  }
-
-  /**
-   * Indicate that the model's email address should be unverified.
-   */
-  public function unverified(): static
-  {
-    return $this->state(fn(array $attributes) => [
-      'email_verified_at' => null,
-    ]);
-  }
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'title' => fake()->sentence(),
+            'content' => fake()->paragraphs(3, true),
+            'published' => fake()->boolean(),
+            'user_id' => User::factory(),
+        ];
+    }
 }

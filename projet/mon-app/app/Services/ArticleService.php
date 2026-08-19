@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services;
 
 use App\Models\Article;
@@ -9,9 +10,10 @@ class ArticleService
     {
         $article->update(['published' => true]);
     }
+
     public function estPubliable(Article $article): bool
     {
-        return !empty($article->title)
-            && !empty($article->content);
+        return ! empty($article->title)
+            && ! empty($article->content);
     }
 }

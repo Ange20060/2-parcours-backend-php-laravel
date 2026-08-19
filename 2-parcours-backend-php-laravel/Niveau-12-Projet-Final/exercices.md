@@ -8,6 +8,7 @@ référence : [corriges.md](./corriges.md).
 > C'est la pièce maîtresse de ton **portfolio de développeur backend**.
 
 **Sujet au choix** (ou propose le tien) :
+
 - **API de gestion de tâches d'équipe** (recommandé) — utilisateurs, projets, tâches, commentaires.
 - API de mini-boutique (produits, panier, commandes, stock).
 - API de blog/CMS (articles, catégories, modération).
@@ -17,16 +18,18 @@ La suite suppose l'**API de tâches d'équipe**.
 ---
 
 ## Étape 1 — Cahier des charges & modélisation 📐
+
 > 🎯 **But** : concevoir avant de coder (SSOT du schéma).
 
 1. Liste les **entités** et leurs **relations** : `User`, `Project`, `Task`, `Comment`.
 2. Dessine le **schéma relationnel** (clés, relations 1-N / N-N).
 3. Définis les **endpoints** de l'API (verbe + URL + rôle).
-**Livrable** : un schéma + une liste d'endpoints dans le `README.md`. ✅
+   **Livrable** : un schéma + une liste d'endpoints dans le `README.md`. ✅
 
 ---
 
 ## Étape 2 — Fondations Laravel 🏗️
+
 > 🎯 **But** : mettre en place migrations, modèles et relations.
 
 Crée les migrations, les modèles Eloquent avec leurs **relations**, les **factories** et un
@@ -36,6 +39,7 @@ Crée les migrations, les modèles Eloquent avec leurs **relations**, les **fact
 ---
 
 ## Étape 3 — API RESTful 🌐
+
 > 🎯 **But** : exposer les ressources proprement.
 
 Contrôleurs d'API, **API Resources** (format JSON), **Form Requests** (validation), bons
@@ -45,6 +49,7 @@ Contrôleurs d'API, **API Resources** (format JSON), **Form Requests** (validati
 ---
 
 ## Étape 4 — Authentification & autorisation 🔐
+
 > 🎯 **But** : sécuriser l'API.
 
 **Sanctum** pour les tokens ; les actions sont liées à l'utilisateur connecté ; un utilisateur
@@ -53,7 +58,9 @@ ne peut modifier que **ses** ressources (policies/middleware). Mots de passe **h
 
 ---
 
+
 ## Étape 5 — Tests automatisés ✅
+
 > 🎯 **But** : prouver que ça marche et le garder vrai.
 
 Écris des tests **fonctionnels** (endpoints principaux, validation, auth) et **unitaires**
@@ -63,6 +70,7 @@ ne peut modifier que **ses** ressources (policies/middleware). Mots de passe **h
 ---
 
 ## Étape 6 — Qualité & revue de principes 🔍
+
 > 🎯 **But** : passer le code au crible des principes du parcours.
 
 Relis ton code avec la [checklist des principes](./corriges.md) : DRY, KISS, SoC, SOLID,
@@ -72,6 +80,7 @@ Fail Fast… Applique la **[règle du Boy Scout](../Principes-Genie-Logiciel/10-
 ---
 
 ## Étape 7 — Documentation & livraison 🚀
+
 > 🎯 **But** : livrer comme un pro.
 
 `README` complet (installation, endpoints, exemples de requêtes), dépôt **GitHub** propre
